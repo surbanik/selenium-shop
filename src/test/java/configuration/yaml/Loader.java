@@ -1,18 +1,29 @@
 package configuration.yaml;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Loader {
 
-    public Loader() throws IOException {
+    public List<EnvDetails> createEnvList() throws IOException {
         YamlReader yamlReader = new YamlReader();
-        String testWebURL = yamlReader.getConfig().getEnvironment().getTest().getWebUrl();
-        System.setProperty("testWebURL",testWebURL);
-        String devWebURL = yamlReader.getConfig().getEnvironment().getDev().getWebUrl();
-        System.setProperty("devWebURL",devWebURL);
-        String testTitle = yamlReader.getConfig().getEnvironment().getTest().getTitle();
-        System.setProperty("title",testTitle);
-        String devTitle = yamlReader.getConfig().getEnvironment().getDev().getTitle();
-        System.setProperty("title",devTitle);
+        EnvDetails test = yamlReader.getConfig().environments.getTest();
+        EnvDetails dev = yamlReader.getConfig().environments.getDev();
+        List<EnvDetails> envList = new ArrayList<>();
+        envList.add(test);
+        envList.add(dev);
+        return envList;
+    }
+
+
+    public Loader() throws IOException {
+        for (EnvDetails env : createEnvList()){
+            if (env.getActive().equals("y")){
+                System.setProperty("webURL", env.getWebUrl());
+                System.setProperty("title",env.getTitle());
+                System.setProperty("browser",env.getBrowser());
+            }
+        }
     }
 }

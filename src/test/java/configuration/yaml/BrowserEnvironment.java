@@ -12,7 +12,7 @@ import org.openqa.selenium.support.events.EventFiringWebDriver;
 
 
 public class BrowserEnvironment {
-    private String browserName = "chrome";  //chrome, firefox, default-IE
+    private String browserName = System.getProperty("browser"); //"chrome";  //chrome, firefox, default-IE
     private WebDriver driver;
 
 
@@ -24,7 +24,7 @@ public class BrowserEnvironment {
                 WebDriverManager.chromedriver().setup();
                 optionsChrome.addArguments("start-maximized");
                 driver = new ChromeDriver(optionsChrome);          //listener
-                driver.get(System.getProperty("testWebURL"));        //devWebURL, testWebURL
+                driver.get(System.getProperty("webURL"));        //devWebURL, testWebURL
                 break;
             case "firefox":
                 FirefoxOptions optionsFirefox = new FirefoxOptions();

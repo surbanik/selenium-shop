@@ -1,5 +1,6 @@
 package configuration.yaml;
 
+
 public class Environments {
     EnvDetails dev;
     EnvDetails test;
@@ -11,7 +12,5 @@ public class Environments {
     public EnvDetails getTest() {
         return test;
     }
-
-
 
 }
