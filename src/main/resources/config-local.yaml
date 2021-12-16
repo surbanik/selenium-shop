@@ -1,0 +1,10 @@
+environments:
+  dev:
+    envName: dev
+    webUrl: http://www.kotuszkowo.pl
+    title: Kotuszkowo- blog o kotach
+  test:
+    envName: test
+    webUrl: http://146.59.32.4/
+    title: TesterSii
+

@@ -1,7 +1,7 @@
-package Tests;
+package tests;
 
-import Pages.LoginPage;
-import Pages.MainPage;
+import pages.LoginPage;
+import pages.MainPage;
 import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.parallel.Execution;
 import org.junit.jupiter.api.parallel.ExecutionMode;

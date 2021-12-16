@@ -1,4 +1,4 @@
-package Pages;
+package pages;
 
 import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.WebDriver;

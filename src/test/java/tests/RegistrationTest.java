@@ -1,8 +1,8 @@
-package Tests;
+package tests;
 
-import Pages.LoginPage;
-import Pages.MainPage;
-import Pages.RegistrationPage;
+import pages.LoginPage;
+import pages.MainPage;
+import pages.RegistrationPage;
 import org.junit.jupiter.api.RepeatedTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
