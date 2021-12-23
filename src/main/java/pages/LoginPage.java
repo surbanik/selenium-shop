@@ -1,5 +1,8 @@
 package pages;
 
+import basePage.BasePage;
+import models.User;
+import models.UserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,13 +10,10 @@ import org.openqa.selenium.support.PageFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class LoginPage extends PageBase {
+public class LoginPage extends BasePage {
     static private Logger logger = LoggerFactory.getLogger(LoginPage.class);
 
-    public LoginPage(WebDriver driver) {
-        super(driver);
-        PageFactory.initElements(driver, this);
-    }
+    public LoginPage(WebDriver driver) {super(driver);}
 
     @FindBy(css = "div.col-md-6>input[name='email']")
     WebElement emailInput;
@@ -32,20 +32,17 @@ public class LoginPage extends PageBase {
 
 
     public LoginPage setEmail(String email) {
-        emailInput.sendKeys(email);
-        logger.info("W polu 'Email' wpisano wartość {}", email);
+        typeTextTo(emailInput, email);
         return this;
     }
 
     public LoginPage setPassword(String password) {
-        passwordInput.sendKeys(password);
-        logger.info("W polu 'Password' wpisano wartość {}", password);
+        typeTextTo(passwordInput,password);
         return this;
     }
 
     public LoginPage clickOnSignInButton() {
-        signInButton.click();
-        logger.info("Użytkownik użył przycisku 'Sign In'");
+        performClick(signInButton);
         return this;
     }
 
@@ -54,9 +51,29 @@ public class LoginPage extends PageBase {
     }
 
     public RegistrationPage goToRegistrationForm() {
-        registrationLink.click();
-        logger.info("Użytkownik przeszedł do formularza rejestracyjnego");
+        performClick(registrationLink);
         return new RegistrationPage(driver);
     }
+
+    public LoginPage logInWithNonExistingUser(){
+        UserFactory userFactory = new UserFactory();
+        User user = userFactory.getRandomUser();
+
+        setEmail(user.getEmail());
+        setPassword(user.getPassword());
+        clickOnSignInButton();
+        return this;
+    }
+
+    public LoginPage logInWithExistingUser(){
+        UserFactory userFactory = new UserFactory();
+        User user = userFactory.getAlreadyRegisteredUser();
+
+        setEmail(user.getEmail());
+        setPassword(user.getPassword());
+        clickOnSignInButton();
+        return this;
+    }
+
 
 }

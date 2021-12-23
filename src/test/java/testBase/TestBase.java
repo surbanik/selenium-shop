@@ -1,7 +1,8 @@
-package tests;
+package testBase;
 
 import configuration.yaml.BrowserEnvironment;
 import configuration.yaml.Loader;
+import driverFactory.DriverFactory;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,6 +22,8 @@ public class TestBase {
     static private Logger logger = LoggerFactory.getLogger(TestBase.class);
     protected WebDriver driver;
     private static BrowserEnvironment browserEnvironment;
+    private static DriverFactory driverFactory;
+
     private static Loader loader;
 
 
@@ -40,14 +43,15 @@ public class TestBase {
     @BeforeAll
     static void setDriver() throws IOException {
         loader = new Loader();
-        browserEnvironment = new BrowserEnvironment();
+//        browserEnvironment = new BrowserEnvironment();
+        driverFactory = new DriverFactory();
         logger.info("Webdriver initialized");
     }
 
     @BeforeEach
     void setUp() {
-
-        driver = browserEnvironment.getDriver();
+//        driver = browserEnvironment.getDriver();
+        driver = driverFactory.getDriver(loader.getBrowser());
         logger.info("Webdriver window start");
     }
 

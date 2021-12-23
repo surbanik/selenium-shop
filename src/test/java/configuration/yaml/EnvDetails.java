@@ -5,8 +5,22 @@ public class EnvDetails {
     String webUrl;
     String title;
     String browser;
+    String userEmail;
+    String userPassword;
     String active;
+    String loginFailMessage;
 
+    public String getLoginFailMessage() {
+        return loginFailMessage;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
 
     public String getActive() {
         return active;

@@ -1,50 +1,42 @@
 package pages;
 
-import org.openqa.selenium.By;
+import basePage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
-import java.util.List;
-
-public class MainPage extends PageBase {
-    static private Logger logger = LoggerFactory.getLogger(MainPage.class);
+public class MainPage extends BasePage {
 
     public MainPage(WebDriver driver) {
         super(driver);
-        PageFactory.initElements(driver, this);
     }
 
-    @FindBy(css = "a.account>span.hidden-sm-down")
-    WebElement userLogin;
 
-
-    @FindBy(className = "user-info")
-    WebElement signInButton;
-
-    @FindBy(css = "[class='logout hidden-sm-down']")
-    WebElement logOutButton;
-
-
-    public void goToLoginPage() {
-        signInButton.click();
-        logger.info("Użytkownik przeszedł do strony logowania");
+    public WebElement getProducts() {
+        return products;
     }
 
-    public String getUserLogin() {
-        return userLogin.getText();
+    @FindBy(css = "[class='products row']")
+    WebElement products;
+
+    @FindBy(className = "footer-container")
+    WebElement footer;
+
+
+    public String getRandomProductName() {
+        return new ProductListPage(products).getRandomProductTitle();
     }
 
-    public void logOut() {
-        logOutButton.click();
-        logger.info("Użytkownik wylogował się");
+
+    public OnSalePage clickOnPricesDrop(){
+        performWaitAndClick(new FooterPage(footer).pricesDrop);
+        return new OnSalePage(driver);
     }
 
-    public boolean checkIsUserLogedOut() {
-        List<WebElement> elementsList = driver.findElements(By.cssSelector("[class='logout hidden-sm-down']"));
-        return elementsList.isEmpty();
+    public ProductListPage clickOnRandomProduct() {
+        ProductListPage productListPage = new ProductListPage(products);
+        performWaitAndClick(productListPage.getRandomProduct());
+        return productListPage;
     }
+
 }

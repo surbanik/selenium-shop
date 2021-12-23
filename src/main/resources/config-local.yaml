@@ -3,12 +3,19 @@ environments:
     envName: dev
     webUrl: http://www.kotuszkowo.pl
     title: Kotuszkowo- blog o kotach
-    browser: chrome
+    browser: firefox
+    userEmail: test@test.pl
+    userPassword: testtest
+    loginFailMessage: Authentication failed.
     active: n
   test:
     envName: test
     webUrl: http://146.59.32.4/
     title: TesterSii
     browser: chrome
+    userEmail: test@test.pl
+    userPassword: testtest
+    loginFailMessage: Authentication failed.
     active: y
+
 

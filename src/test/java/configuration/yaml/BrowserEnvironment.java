@@ -28,8 +28,10 @@ public class BrowserEnvironment {
                 break;
             case "firefox":
                 FirefoxOptions optionsFirefox = new FirefoxOptions();
-                WebDriverManager.chromedriver().setup();
+                WebDriverManager.firefoxdriver().setup();
                 optionsFirefox.addArguments("start-maximized");
+                driver = new FirefoxDriver();          //listener
+                driver.get(System.getProperty("webURL"));        //devWebURL, testWebURL
                 break;
             default:
                 InternetExplorerOptions optionsdefault = new InternetExplorerOptions();
