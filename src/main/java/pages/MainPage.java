@@ -27,16 +27,11 @@ public class MainPage extends BasePage {
         return new ProductListPage(products).getRandomProductTitle();
     }
 
-
     public OnSalePage clickOnPricesDrop(){
         performWaitAndClick(new FooterPage(footer).pricesDrop);
         return new OnSalePage(driver);
     }
 
-    public ProductListPage clickOnRandomProduct() {
-        ProductListPage productListPage = new ProductListPage(products);
-        performWaitAndClick(productListPage.getRandomProduct());
-        return productListPage;
-    }
+
 
 }

@@ -36,4 +36,15 @@ public class CategoryPage extends BasePage {
         return numberOfProductsMessage.getText().contains(Integer.toString(new ProductListPage(products).howManyProductsOnList()));
     }
 
+    public ProductDetailPage clickOnRandomProduct() {
+        ProductListPage productListPage = new ProductListPage(products);
+        performWaitAndClick(productListPage.getRandomProduct());
+        return new ProductDetailPage(driver);
+    }
+
+
+
+
+
+    
 }

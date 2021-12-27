@@ -19,8 +19,13 @@ public class ProductDetailPage extends BasePage {
     WebElement regularPrice;
 
     @FindBy(css = ".current-price>span[itemprop='price']")
-    public WebElement discountedPrice;
+    WebElement discountedPrice;
 
+    @FindBy(css = ".add-to-cart")
+    WebElement addToCartButton;
+
+    @FindBy(id = "quantity_wanted")
+    WebElement quantityInput;
 
     public boolean isDiscountLabelIsDispalyed() {
         return discountLabel.isDisplayed();
@@ -52,5 +57,13 @@ public class ProductDetailPage extends BasePage {
         return (round(doubleRegularPrice * 0.8) == doubleDiscountedPrice);
     }
 
+    public ProductDetailPage setRandomQuantity(){
+        typeTextTo(quantityInput, "5");
+        return this;
+    }
 
+    public ProductDetailPage addProductToCart(){
+        performWaitAndClick(addToCartButton);
+        return this;
+    }
 }

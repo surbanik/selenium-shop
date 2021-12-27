@@ -19,7 +19,7 @@ public class ProductListPage{
     @FindBy(className = "product-title")
     List<WebElement> productTitleList;
 
-    @FindBy(className = "div.product")
+    @FindBy(css = "div.product")
     List<WebElement> product;
 
     public int getRandomProductIndex(){

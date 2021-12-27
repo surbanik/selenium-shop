@@ -41,6 +41,10 @@ public class HeaderPage extends BasePage {
         return categoryList;
     }
 
+    public int getCategoryListSize() {
+        return categoryList.size();
+    }
+
     public void hoverOnElementInCategoryList(int index){
         mouseHover(categoryList.get(index));
     }
@@ -104,6 +108,14 @@ public class HeaderPage extends BasePage {
 
     public void clickOnSubcategoryAccordingToCategoryAndSubcategoryIndex(int categoryIndex, int subcategoryIndex){
         performWaitAndClick(getSubcategoryAccordingToCategoryAndSubcategoryIndex(categoryIndex,subcategoryIndex));
+    }
+
+
+    public void openRandomSubcategory(){
+        int i = random.nextInt(getCategoryListSize()-1);
+        hoverOnElementInCategoryList(i);
+        int j = random.nextInt(getSubcategoryListAccordingToCategoryIndex(i).size()-1);
+        performWaitAndClick(getSubcategoryAccordingToCategoryAndSubcategoryIndex(i,j));
     }
 
 

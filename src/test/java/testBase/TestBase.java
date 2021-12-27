@@ -43,15 +43,15 @@ public class TestBase {
     @BeforeAll
     static void setDriver() throws IOException {
         loader = new Loader();
-//        browserEnvironment = new BrowserEnvironment();
-        driverFactory = new DriverFactory();
+        browserEnvironment = new BrowserEnvironment();
+//        driverFactory = new DriverFactory();
         logger.info("Webdriver initialized");
     }
 
     @BeforeEach
     void setUp() {
-//        driver = browserEnvironment.getDriver();
-        driver = driverFactory.getDriver(loader.getBrowser());
+        driver = browserEnvironment.getDriver();
+//        driver = driverFactory.getDriver(loader.getBrowser());
         logger.info("Webdriver window start");
     }
 
