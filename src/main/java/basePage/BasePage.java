@@ -1,9 +1,6 @@
 package basePage;
 
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.TimeoutException;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.interactions.Coordinates;
 import org.openqa.selenium.interactions.Locatable;
@@ -66,7 +63,7 @@ public class BasePage {
     public void typeTextTo(WebElement element, String message){
         wait.until(ExpectedConditions.visibilityOf(element));
         element.clear();
-        element.sendKeys(message);
+        element.sendKeys(Keys.chord(Keys.CONTROL, "a"), message);
         logger.info("Text: {} has been typed to element: {}", message, element);
     }
 
@@ -89,13 +86,12 @@ public class BasePage {
         eventFiringMouse.mouseMove(coordinates);
     }
 
-    public String getElementText(WebElement element) {
-        return element.getText();
+    public static BigDecimal round(BigDecimal bigDecimal) {
+        bigDecimal = bigDecimal.setScale(2, RoundingMode.HALF_UP);
+        return bigDecimal;
     }
 
-    public static double round(double value) {
-        BigDecimal bigDecimal = new BigDecimal(value);
-        bigDecimal = bigDecimal.setScale(2, RoundingMode.HALF_UP);
-        return bigDecimal.doubleValue();
+    public BigDecimal getBigDecimalFromElementPrice(WebElement element){
+        return BigDecimal.valueOf(Double.valueOf(element.getText().substring(2)));
     }
 }

@@ -5,41 +5,105 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Basket {
-    List<ProductList> basket;
+
+
+    List<ProductLine> basket;
     BigDecimal totalPrice;
 
     public Basket() {
         basket = new ArrayList<>();
     }
 
-    public void addProductToBasket(String productName, BigDecimal price, int quantity){
-        for (ProductList orderLine: basket){
-            if (isProductAlreadyinTheBasket(productName,orderLine.getProduct())){
-                orderLine.setQuantity(orderLine.getQuantity()+quantity);
-                orderLine.setProductListPrice(BigDecimal.valueOf(orderLine.getQuantity()).multiply(orderLine.getProduct().getPrice()));
+    public List<ProductLine> getBasket() {
+        return basket;
+    }
+
+
+    public void addProductToBasket(String productName, BigDecimal price, int quantity) {
+        for (ProductLine orderLine : basket) {
+            if (isProductAlreadyInBasket(productName, orderLine.getProduct())) {
+                orderLine.setQuantity(orderLine.getQuantity() + quantity);
+                orderLine.setProductLinePrice(BigDecimal.valueOf(orderLine.getQuantity()).multiply(orderLine.getProduct().getPrice()));
                 return;
             }
         }
-        addNewProductToBasket(new Product(productName,price),quantity);
+        addNewProductToBasket(new Product(productName, price), quantity);
 
     }
 
-    public boolean isProductAlreadyinTheBasket(String productName, Product product){
+    protected boolean isProductAlreadyInBasket(String productName, Product product) {
         return product.getName().equals(productName);
     }
 
-    public void addNewProductToBasket(Product product, int quantity){
-        basket.add(new ProductList(product,quantity));
+    protected void addNewProductToBasket(Product product, int quantity) {
+        basket.add(new ProductLine(product, quantity));
     }
 
 
-
-    public BigDecimal getBasketTotal(){
+    public BigDecimal getBasketTotal() {
         BigDecimal total = BigDecimal.valueOf(0);
-        for (ProductList productList: basket){
-            total = total.add(productList.getProductListPrice());
+        for (ProductLine productList : basket) {
+            total = total.add(productList.getProductLinePrice());
         }
         return total;
     }
 
+    public int getBasketSize() {
+        int total = 0;
+        for (ProductLine productList : basket) {
+            total += productList.getQuantity();
+        }
+        return total;
+    }
+
+
+    public int getProductQuantityByName(String productName) {
+        for (ProductLine productList : basket) {
+            if (productList.getProduct().getName().equals(productName)) {
+                return productList.getQuantity();
+            }
+        }
+        return 0;
+    }
+
+    public List<String> getProductsNameInBasket(){
+        List<String> nameList = new ArrayList<>();
+        for(ProductLine productLine:basket){
+            nameList.add(productLine.getProduct().getName());
+        }
+        return nameList;
+    }
+
+    public List<Integer> getProductsQuantitiesInBasket(){
+        List<Integer> quantitiesList = new ArrayList<>();
+        for(ProductLine productLine:basket){
+            quantitiesList.add(productLine.getQuantity());
+        }
+        return quantitiesList;
+    }
+
+    public List<BigDecimal> getProductsPriceInBasket(){
+        List<BigDecimal> priceList = new ArrayList<>();
+        for(ProductLine productLine:basket){
+            priceList.add(productLine.getProductLinePrice());
+        }
+        return priceList;
+    }
+
+    public int getProductLinesAmount(){
+        return basket.size();
+    }
+
+
+    public void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    public BigDecimal getTotalPrice() {
+        return totalPrice;
+    }
 }
+
+
+
+

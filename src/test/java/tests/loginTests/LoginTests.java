@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Execution(ExecutionMode.CONCURRENT)
 public class LoginTests extends TestBase {
 
-    @RepeatedTest(1)
+    @RepeatedTest(10)
     public void loginFailed() {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -29,7 +29,7 @@ public class LoginTests extends TestBase {
         assertEquals(System.getProperty("loginFailMessage"), loginPage.getAlertMessage());
     }
 
-    @RepeatedTest(1)
+    @RepeatedTest(10)
     public void loginSuccess() {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -42,7 +42,7 @@ public class LoginTests extends TestBase {
         loginPage
                 .logInWithExistingUser();
 
-        assertEquals(user.getFirstName()+" "+user.getLastName(), new HeaderPage(driver).getUserLogin());
+        assertEquals(user.getFirstName()+" "+user.getLastName(), headerPage.getUserLogin());
 
         headerPage
                 .logOut();

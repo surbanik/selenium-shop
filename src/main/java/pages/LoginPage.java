@@ -6,14 +6,12 @@ import models.UserFactory;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class LoginPage extends BasePage {
-    static private Logger logger = LoggerFactory.getLogger(LoginPage.class);
 
-    public LoginPage(WebDriver driver) {super(driver);}
+    public LoginPage(WebDriver driver) {
+        super(driver);
+    }
 
     @FindBy(css = "div.col-md-6>input[name='email']")
     WebElement emailInput;
@@ -37,7 +35,7 @@ public class LoginPage extends BasePage {
     }
 
     public LoginPage setPassword(String password) {
-        typeTextTo(passwordInput,password);
+        typeTextTo(passwordInput, password);
         return this;
     }
 
@@ -55,7 +53,7 @@ public class LoginPage extends BasePage {
         return new RegistrationPage(driver);
     }
 
-    public LoginPage logInWithNonExistingUser(){
+    public LoginPage logInWithNonExistingUser() {
         UserFactory userFactory = new UserFactory();
         User user = userFactory.getRandomUser();
 
@@ -65,7 +63,7 @@ public class LoginPage extends BasePage {
         return this;
     }
 
-    public LoginPage logInWithExistingUser(){
+    public LoginPage logInWithExistingUser() {
         UserFactory userFactory = new UserFactory();
         User user = userFactory.getAlreadyRegisteredUser();
 

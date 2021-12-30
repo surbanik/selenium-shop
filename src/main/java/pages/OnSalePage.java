@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.List;
 
 public class OnSalePage extends BasePage {
@@ -52,7 +51,6 @@ public class OnSalePage extends BasePage {
         return getProductsAmount() == getDiscountLabelsAmount();
     }
 
-
     public List<WebElement> getRegularPriceList() {
         return regularPriceList;
     }
@@ -70,23 +68,19 @@ public class OnSalePage extends BasePage {
         return getProductsAmount() == getDiscountedPriceAmount();
     }
 
-
     public boolean isDiscountPriceIs20PercentLowerThenRegular() {
         for (int i = 0; i < getProductsAmount(); i++) {
-            String discountedPrice = getElementText(getDiscountedPriceList().get(i));
-            String regularPrice = getElementText(getRegularPriceList().get(i));
+            BigDecimal discountedPrice = BigDecimal.valueOf(Double.parseDouble(getDiscountedPriceList().get(i).getText().substring(2)));
+            BigDecimal regularPrice = getBigDecimalFromElementPrice(getRegularPriceList().get(i));
 
-            double doubleDiscountedPrice = Double.parseDouble(discountedPrice.substring(2));
-            double doubleRegularPrice = Double.parseDouble(regularPrice.substring(2));
-
-            if (round(doubleRegularPrice * 0.8) != doubleDiscountedPrice) {
+            if (!round(regularPrice.multiply(BigDecimal.valueOf(0.8))).equals(discountedPrice)) {
                 return false;
             }
         }
         return true;
     }
 
-    public ProductDetailPage clickOnRandomProduct(){
+    public ProductDetailPage clickOnRandomProduct() {
         performClick(productsList.get(random.nextInt(productsList.size())));
         return new ProductDetailPage(driver);
     }

@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Execution(ExecutionMode.CONCURRENT)
 public class RegistrationTest extends TestBase {
 
-    @RepeatedTest(1)
+    @RepeatedTest(10)
     public void ragistrationTest() {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -33,7 +33,7 @@ public class RegistrationTest extends TestBase {
         registrationPage
                 .registerNewUser(user);
 
-        assertEquals(user.getFirstName() + " " + user.getLastName(), new HeaderPage(driver).getUserLogin());
+        assertEquals(user.getFirstName() + " " + user.getLastName(), headerPage.getUserLogin());
 
     }
 }

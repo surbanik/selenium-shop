@@ -1,5 +1,6 @@
 package basePage;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
@@ -11,6 +12,12 @@ public class WebListener extends AbstractWebDriverEventListener {
 
     @Override
     public void afterClickOn(WebElement element, WebDriver driver) {
+        WebElement alertElement = driver.findElement(By.cssSelector(".alert-danger"));
+        WebElement alertElement2 = driver.findElement(By.cssSelector(".product-unavailable"));
+        if (alertElement.isDisplayed() || alertElement2.isDisplayed()){
+            logger.warn("brak produktów w sklepie. test przerwany");
+            driver.quit();
+        }
     }
 
     @Override

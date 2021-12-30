@@ -8,8 +8,6 @@ import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 import java.util.List;
 import java.util.Random;
 
-import static java.lang.Thread.sleep;
-
 public class ProductListPage{
 
     public ProductListPage(WebElement productLIst) {
@@ -30,7 +28,6 @@ public class ProductListPage{
     public WebElement getRandomProduct(){
         return product.get(getRandomProductIndex());
     }
-
 
     public String getRandomProductTitle(){
         return productTitleList.get(getRandomProductIndex()).getText();

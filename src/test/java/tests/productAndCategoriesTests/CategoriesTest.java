@@ -12,16 +12,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Execution(ExecutionMode.CONCURRENT)
 public class CategoriesTest extends TestBase {
 
-    @RepeatedTest(1)
+    @RepeatedTest(10)
     public void categoriesAndSubcategoriesTest() {
         HeaderPage headerPage = new HeaderPage(driver);
         CategoryPage categoryPage = new CategoryPage(driver);
 
         for (int i = 0; i < headerPage.getCategoryList().size(); i++) {
             for(int j=0; j < headerPage.getAmountOfSubcategorysAccordingToCategoryIndex(i);j++){
-                headerPage.hoverOnElementInCategoryList(i);
+                headerPage
+                        .hoverOnElementInCategoryList(i);
+
                 String subcategoryName = headerPage.getSubcategoryNameAccordingToCategoryAndSubcategoryIndex(i,j);
-                headerPage.clickOnSubcategoryAccordingToCategoryAndSubcategoryIndex(i,j);
+
+                headerPage
+                        .clickOnSubcategoryAccordingToCategoryAndSubcategoryIndex(i,j);
 
                 assertTrue(categoryPage.isChosenCategoryIsOnHeader(subcategoryName));
                 assertTrue(categoryPage.isFilterIsDisplayed());
