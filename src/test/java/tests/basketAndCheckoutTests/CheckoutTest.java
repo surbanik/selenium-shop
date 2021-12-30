@@ -12,8 +12,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckoutTest extends TestBase {
 
-    @RepeatedTest(10)
-    public void checkoutTest() {
+    @RepeatedTest(1)
+    public void checkoutTest() throws InterruptedException {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);
         RegistrationPage registrationPage = new RegistrationPage(driver);

@@ -25,9 +25,9 @@ public class BasePage {
     private EventFiringMouse eventFiringMouse;
     private WebListener webListener;
 
-    public BasePage(WebDriver driver){
+    public BasePage(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver,Duration.ofSeconds(15));
+        wait = new WebDriverWait(driver, Duration.ofSeconds(15));
         action = new Actions(driver);
         random = new Random();
         PageFactory.initElements(driver, this);
@@ -37,45 +37,48 @@ public class BasePage {
         ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", element);
     }
 
-    public void performClick(WebElement element){
+    String getElementSelector(WebElement element) {
+        return element.toString().split("->")[1];
+    }
+
+    public void performClick(WebElement element) {
         try {
+            logger.info("Trying to click on element: {}", getElementSelector(element));
             element.click();
         } catch (TimeoutException e) {
             e.printStackTrace();
             logger.error("Element not found");
         }
-        logger.info("Element: {} has been clicked",element);
     }
 
-    public void performWaitAndClick(WebElement element){
+    public void performWaitAndClick(WebElement element) {
         try {
             waitUntilElementToBeClickable(element);
+            logger.info("Trying to click on element: {} with text: {}", getElementSelector(element), element.getText());
             element.click();
         } catch (TimeoutException e) {
             e.printStackTrace();
             logger.error("Element not found");
         }
-        logger.info("Element: {} has been clicked",element);
     }
 
 
-
-    public void typeTextTo(WebElement element, String message){
+    public void typeTextTo(WebElement element, String message) {
         wait.until(ExpectedConditions.visibilityOf(element));
         element.clear();
         element.sendKeys(Keys.chord(Keys.CONTROL, "a"), message);
-        logger.info("Text: {} has been typed to element: {}", message, element);
+        logger.info("Text: {} has been typed to element: {}", message, getElementSelector(element));
     }
 
-    public void waitUntilElementToBeVisible(WebElement element){
+    public void waitUntilElementToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
-        logger.info("Waiting to element: {} be visible", element);
+        logger.info("Waiting to element: {} be visible", getElementSelector(element));
     }
 
 
-    public void waitUntilElementToBeClickable(WebElement element){
+    public void waitUntilElementToBeClickable(WebElement element) {
         wait.until(ExpectedConditions.elementToBeClickable(element));
-        logger.info("Waiting to element: {} be clickable", element);
+        logger.info("Waiting to element: {} be clickable", getElementSelector(element));
     }
 
 
@@ -91,7 +94,7 @@ public class BasePage {
         return bigDecimal;
     }
 
-    public BigDecimal getBigDecimalFromElementPrice(WebElement element){
+    public BigDecimal getBigDecimalFromElementPrice(WebElement element) {
         return BigDecimal.valueOf(Double.valueOf(element.getText().substring(2)));
     }
 }

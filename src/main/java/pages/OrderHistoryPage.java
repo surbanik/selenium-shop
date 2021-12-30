@@ -10,6 +10,8 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
+import static java.lang.Thread.sleep;
+
 public class OrderHistoryPage extends BasePage {
     public OrderHistoryPage(WebDriver driver) {
         super(driver);
@@ -43,7 +45,8 @@ public class OrderHistoryPage extends BasePage {
                 && historyRow.getOrderStatus().equals(orderDetails.getStatus()));
     }
 
-    public OrderDetailsPage goToOrderDetailsPage(OrderDetails orderDetails) {
+    public OrderDetailsPage goToOrderDetailsPage(OrderDetails orderDetails) throws InterruptedException {
+        sleep(2000);
         OrderHistoryRowPage historyRow = getOrderHistoryRow(orderDetails);
         performClick(historyRow.detailsLink);
         return new OrderDetailsPage(driver);
