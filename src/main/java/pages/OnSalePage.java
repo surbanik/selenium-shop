@@ -70,7 +70,7 @@ public class OnSalePage extends BasePage {
 
     public boolean isDiscountPriceIs20PercentLowerThenRegular() {
         for (int i = 0; i < getProductsAmount(); i++) {
-            BigDecimal discountedPrice = BigDecimal.valueOf(Double.parseDouble(getDiscountedPriceList().get(i).getText().substring(2)));
+            BigDecimal discountedPrice = getBigDecimalFromElementPrice(getDiscountedPriceList().get(i));
             BigDecimal regularPrice = getBigDecimalFromElementPrice(getRegularPriceList().get(i));
 
             if (!round(regularPrice.multiply(BigDecimal.valueOf(0.8))).equals(discountedPrice)) {

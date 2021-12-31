@@ -70,6 +70,11 @@ public class BasePage {
         logger.info("Text: {} has been typed to element: {}", message, getElementSelector(element));
     }
 
+    public void typeEnterOnElement(WebElement element){
+        element.sendKeys(Keys.ENTER);
+        logger.info("ENTER has been used on element: {}", getElementSelector(element));
+    }
+
     public void waitUntilElementToBeVisible(WebElement element) {
         wait.until(ExpectedConditions.visibilityOf(element));
         logger.info("Waiting to element: {} be visible", getElementSelector(element));
@@ -95,6 +100,6 @@ public class BasePage {
     }
 
     public BigDecimal getBigDecimalFromElementPrice(WebElement element) {
-        return BigDecimal.valueOf(Double.valueOf(element.getText().substring(2)));
+        return BigDecimal.valueOf(Double.valueOf(element.getText().substring(1))).setScale(2, RoundingMode.HALF_UP);
     }
 }

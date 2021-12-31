@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class OrderHistoryRowPage {
     public OrderHistoryRowPage(WebElement table) {
@@ -31,6 +32,10 @@ public class OrderHistoryRowPage {
     @FindBy(linkText = "Details")
     WebElement detailsLink;
 
+    public BigDecimal getBigDecimalFromElementPrice(WebElement element){
+        return BigDecimal.valueOf(Double.valueOf(element.getText().substring(1))).setScale(2, RoundingMode.HALF_UP);
+    }
+
     public String getOrderReference() {
         return orderReference.getText();
     }
@@ -40,7 +45,7 @@ public class OrderHistoryRowPage {
     }
 
     public BigDecimal getTotalPrice() {
-        return BigDecimal.valueOf(Double.valueOf(totalPrice.getText().substring(2)));
+        return getBigDecimalFromElementPrice(totalPrice);
     }
 
     public String getPaymentMethod() {

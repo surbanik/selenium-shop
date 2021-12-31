@@ -6,6 +6,7 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.pagefactory.DefaultElementLocatorFactory;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class OrderDetailsRowPage {
     public OrderDetailsRowPage(WebElement table) {
@@ -26,7 +27,7 @@ public class OrderDetailsRowPage {
     WebElement productLinePrice;
 
     public BigDecimal getBigDecimalFromElementPrice(WebElement element){
-        return BigDecimal.valueOf(Double.valueOf(element.getText().substring(2)));
+        return BigDecimal.valueOf(Double.valueOf(element.getText().substring(1))).setScale(2, RoundingMode.HALF_UP);
     }
 
     public BigDecimal getProductLinePrice() {

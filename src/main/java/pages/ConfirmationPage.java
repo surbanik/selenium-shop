@@ -60,7 +60,7 @@ public class ConfirmationPage extends BasePage {
         return list;
     }
 
-    public List<BigDecimal> getproductLinePriceList() {
+    public List<BigDecimal> getProductLinePriceList() {
         List<BigDecimal> list = new ArrayList<>();
         for (WebElement element : productLinePriceList) {
             list.add(getBigDecimalFromElementPrice(element));
@@ -73,7 +73,7 @@ public class ConfirmationPage extends BasePage {
             if (!(productNameList.get(i).getText().contains(basket.getBasket().get(i).getProduct().getName())
                     && basket.getBasket().get(i).getQuantity() == Integer.valueOf(quantityList.get(i).getText())
                     && basket.getBasket().get(i).getProduct().getPrice().equals(getUnitPriceList().get(i))
-                    && basket.getBasket().get(i).getProductLinePrice().equals(getproductLinePriceList().get(i)))) {
+                    && basket.getBasket().get(i).getProductLinePrice().equals(getProductLinePriceList().get(i)))) {
                 return false;
             }
         }

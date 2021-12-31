@@ -41,10 +41,10 @@ public class ProductSuccesfullyAddedToCartTest extends TestBase {
                     .addDisplayedProductToCart(basket);
 
             assertEquals(productDetailPage.getConfirmationProductName(), product.getName());
-//            assertEquals(productDetailPage.getConfirmationPrice(), product.getPrice()); //may fail because of website price calculation problem
+            assertEquals(productDetailPage.getConfirmationPrice(), product.getPrice()); //may fail because of website price calculation problem
             assertEquals(productDetailPage.getConfirmationQuantity(), basket.getProductQuantityByName(product.getName()));
             assertEquals(productDetailPage.getConfirmationNumberOfItemsInCart(), basket.getBasketSize());
-//            assertEquals(productDetailPage.getConfirmationTotal(), basket.getBasketTotal()); //may fail because of website price calculation problem
+            assertEquals(productDetailPage.getConfirmationTotal(), basket.getBasketTotal()); //may fail because of website price calculation problem
 
             productDetailPage.continueShopping();
         }

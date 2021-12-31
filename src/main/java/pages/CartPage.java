@@ -4,9 +4,11 @@ import basePage.BasePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -33,6 +35,9 @@ public class CartPage extends BasePage {
 
     @FindBy(css = ".js-subtotal")
     WebElement totalNumberOFItems;
+
+    @FindBy(css = "span>strong:nth-child(1)")
+    WebElement firstProductOnList;
 
     @FindBy(css = ".current-price>.price")
     List<WebElement> singleProductPriceList;
@@ -86,8 +91,9 @@ public class CartPage extends BasePage {
 
     public void setFirsProductQuantityTo5(){
         typeTextTo(quantityInputList.get(0), "5");
+        typeEnterOnElement(quantityInputList.get(0));
         performWaitAndClick(totalPrice);
-        wait.until(ExpectedConditions.textToBePresentInElement(productLinePriceList.get(0),"zł"+ getUnitPriceInCart().get(0).multiply(BigDecimal.valueOf(5))));
+        wait.until(ExpectedConditions.textToBePresentInElement(firstProductOnList,"$"+ getUnitPriceInCart().get(0).multiply(BigDecimal.valueOf(5))));
     }
 
     public boolean isTotalOrderValueIsCorrect(){
@@ -101,7 +107,7 @@ public class CartPage extends BasePage {
             }
             return (getTotalPrice().equals(orderPrice));
         }
-        return (getTotalPrice().equals(BigDecimal.valueOf(0)));
+        return (getTotalPrice().equals(BigDecimal.valueOf(0).setScale(2, RoundingMode.HALF_UP)));
     }
 
     public boolean isIncreaseingFirstProductQuantityChangePrice(){

@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CheckoutTest extends TestBase {
 
-    @RepeatedTest(1)
+    @RepeatedTest(10)
     public void checkoutTest() throws InterruptedException {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);
@@ -76,7 +76,7 @@ public class CheckoutTest extends TestBase {
                 .clickOnTermsAndConditionsCheckbox()
                 .placeOrder(orderDetails);
 
-//        assertTrue(confirmationPage.isProductDetailsAreCorrect(basket));//may fail because of website price calculation problem
+        assertTrue(confirmationPage.isProductDetailsAreCorrect(basket));//may fail because of website price calculation problem
         assertTrue(confirmationPage.isPaymentAndShippingMethodsAreCorrect(orderDetails));
 
         confirmationPage
@@ -86,12 +86,12 @@ public class CheckoutTest extends TestBase {
                 .goToYourAccountPage()
                 .goToOrderHistoryPage();
 
-//        assertTrue(orderHistoryPage.isOrderDetailsAreCorrect(orderDetails, basket));//may fail because of website price calculation problem
+        assertTrue(orderHistoryPage.isOrderDetailsAreCorrect(orderDetails, basket));//may fail because of website price calculation problem
 
         orderHistoryPage
                 .goToOrderDetailsPage(orderDetails);
 
-//        assertTrue(orderDetailsPage.isProductDetailsAreCorrect(basket));//may fail because of website price calculation problem
+        assertTrue(orderDetailsPage.isProductDetailsAreCorrect(basket));//may fail because of website price calculation problem
         assertTrue(orderDetailsPage.isDeliveryAddressIsCorrect(user));
 
     }
