@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Execution(ExecutionMode.CONCURRENT)
 public class PricesDropTest extends TestBase {
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void pricesDropTest() {
         OnSalePage onSalePage = new OnSalePage(driver);
         MainPage mainPage = new MainPage(driver);

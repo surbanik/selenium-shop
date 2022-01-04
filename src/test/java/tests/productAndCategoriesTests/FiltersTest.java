@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class FiltersTest extends TestBase {
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void Filters() {
         HeaderPage headerPage = new HeaderPage(driver);
         CategoryPage categoryPage = new CategoryPage(driver);

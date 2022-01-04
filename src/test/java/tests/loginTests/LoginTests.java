@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Execution(ExecutionMode.CONCURRENT)
 public class LoginTests extends TestBase {
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void loginFailed() {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);

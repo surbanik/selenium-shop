@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Execution(ExecutionMode.CONCURRENT)
 public class RegistrationTest extends TestBase {
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void ragistrationTest() {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);

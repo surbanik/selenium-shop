@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class BasketTest extends TestBase {
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void basketTest() {
         HeaderPage headerPage = new HeaderPage(driver);
         ProductDetailPage productDetailPage = new ProductDetailPage(driver);

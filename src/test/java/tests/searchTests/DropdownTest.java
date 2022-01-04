@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Execution(ExecutionMode.CONCURRENT)
 public class DropdownTest extends TestBase {
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void dropdownTest(){
         MainPage mainPage = new MainPage(driver);
         HeaderPage headerPage = new HeaderPage(driver);

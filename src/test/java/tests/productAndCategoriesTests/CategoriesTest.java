@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 @Execution(ExecutionMode.CONCURRENT)
 public class CategoriesTest extends TestBase {
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void categoriesAndSubcategoriesTest() {
         HeaderPage headerPage = new HeaderPage(driver);
         CategoryPage categoryPage = new CategoryPage(driver);
