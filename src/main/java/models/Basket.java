@@ -1,9 +1,12 @@
 package models;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 public class Basket {
 
 
@@ -14,9 +17,6 @@ public class Basket {
         basket = new ArrayList<>();
     }
 
-    public List<ProductLine> getBasket() {
-        return basket;
-    }
 
 
     public void addProductToBasket(String productName, BigDecimal price, int quantity) {
@@ -95,13 +95,6 @@ public class Basket {
     }
 
 
-    public void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    public BigDecimal getTotalPrice() {
-        return totalPrice;
-    }
 }
 
 

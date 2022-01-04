@@ -1,8 +1,10 @@
 package models;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 
-
+@Data
 public class ProductLine {
     Product product;
     int quantity;
@@ -15,24 +17,4 @@ public class ProductLine {
         this.productLinePrice = product.getPrice().multiply(BigDecimal.valueOf(quantity));
     }
 
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public void setProductLinePrice(BigDecimal productLinePrice) {
-        this.productLinePrice = productLinePrice;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public BigDecimal getProductLinePrice() {
-        return productLinePrice;
-    }
 }

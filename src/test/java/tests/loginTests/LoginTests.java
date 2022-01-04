@@ -29,7 +29,7 @@ public class LoginTests extends TestBase {
         assertEquals(System.getProperty("loginFailMessage"), loginPage.getAlertMessage());
     }
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void loginSuccess() {
         HeaderPage headerPage = new HeaderPage(driver);
         LoginPage loginPage = new LoginPage(driver);

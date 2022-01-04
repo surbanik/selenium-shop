@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class ProductSuccesfullyAddedToCartTest extends TestBase {
 
 
-    @RepeatedTest(10)
+    @RepeatedTest(1)
     public void productAddedToCart() {
         HeaderPage headerPage = new HeaderPage(driver);
         ProductDetailPage productDetailPage = new ProductDetailPage(driver);
@@ -41,10 +41,10 @@ public class ProductSuccesfullyAddedToCartTest extends TestBase {
                     .addDisplayedProductToCart(basket);
 
             assertEquals(productDetailPage.getConfirmationProductName(), product.getName());
-            assertEquals(productDetailPage.getConfirmationPrice(), product.getPrice()); //may fail because of website price calculation problem
+            assertEquals(productDetailPage.getConfirmationPrice(), product.getPrice());
             assertEquals(productDetailPage.getConfirmationQuantity(), basket.getProductQuantityByName(product.getName()));
             assertEquals(productDetailPage.getConfirmationNumberOfItemsInCart(), basket.getBasketSize());
-            assertEquals(productDetailPage.getConfirmationTotal(), basket.getBasketTotal()); //may fail because of website price calculation problem
+            assertEquals(productDetailPage.getConfirmationTotal(), basket.getBasketTotal());
 
             productDetailPage.continueShopping();
         }

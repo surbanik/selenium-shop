@@ -38,25 +38,25 @@ public class BasketTest extends TestBase {
 
         assertEquals(basket.getProductsNameInBasket(), cartPage.getProductsNameInCart());
         assertEquals(basket.getProductsQuantitiesInBasket(), cartPage.getProductsQuantityInCart());
-        assertEquals(basket.getProductsPriceInBasket(), cartPage.getProductsPriceInCart()); //may fail because of website price calculation problem
-        assertEquals(basket.getBasketTotal(), cartPage.getTotalPrice()); //may fail because of website price calculation problem
+        assertEquals(basket.getProductsPriceInBasket(), cartPage.getProductsPriceInCart());
+        assertEquals(basket.getBasketTotal(), cartPage.getTotalPrice());
 
         cartPage
                 .setFirsProductQuantityTo5();
 
-        assertTrue(cartPage.isTotalOrderValueIsCorrect()); //may fail because of website price calculation problem
+        assertTrue(cartPage.isTotalOrderValueIsCorrect());
 
-        assertTrue(cartPage.isIncreaseingFirstProductQuantityChangePrice());//may fail because of website price calculation problem
-        assertTrue(cartPage.isTotalOrderValueIsCorrect()); //may fail because of website price calculation problem
+        assertTrue(cartPage.isIncreaseingFirstProductQuantityChangePrice());
+        assertTrue(cartPage.isTotalOrderValueIsCorrect());
 
-        assertTrue(cartPage.isDecreaseingFirstProductQuantityChangePrice());//may fail because of website price calculation problem
-        assertTrue(cartPage.isTotalOrderValueIsCorrect()); //may fail because of website price calculation problem
+        assertTrue(cartPage.isDecreaseingFirstProductQuantityChangePrice());
+        assertTrue(cartPage.isTotalOrderValueIsCorrect());
 
         for (int i = 0; i < basket.getProductLinesAmount(); i++) {
             cartPage
                     .deleteTopItemFromBasket();
 
-            assertTrue(cartPage.isTotalOrderValueIsCorrect()); //may fail because of website price calculation problem
+            assertTrue(cartPage.isTotalOrderValueIsCorrect());
         }
     }
 }

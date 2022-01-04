@@ -2,7 +2,6 @@ package pages;
 
 import basePage.BasePage;
 import models.User;
-import org.apache.commons.lang.RandomStringUtils;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
